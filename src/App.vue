@@ -50,7 +50,7 @@
       <div class="scoring-criteria">
         <h4>作业评分标准：</h4>
         <ul>
-          <li><span class="criteria-item">每个小题：</span>扣5分</li>
+          <li><span class="criteria-item">每个小题：</span>共5分</li>
           <li><span class="criteria-item">权限问题/缺sudo：</span>扣2分</li>
           <li><span class="criteria-item">AI抄袭嫌疑：</span>扣3分</li>
           <li><span class="criteria-item">多命令不完整：</span>扣3分</li>
