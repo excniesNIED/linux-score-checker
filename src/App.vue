@@ -1,5 +1,4 @@
 <template>
-  <!-- 保持模板部分不变 -->
   <div class="container">
     <h1 class="title">Linux课程作业成绩查询系统</h1>
     <div class="search-box">
@@ -46,6 +45,19 @@
             :formatter="formatValue"
         />
       </el-table>
+
+      <!-- 新增评分标准 -->
+      <div class="scoring-criteria">
+        <h4>作业评分标准：</h4>
+        <ul>
+          <li><span class="criteria-item">每个小题：</span>扣5分</li>
+          <li><span class="criteria-item">权限问题/缺sudo：</span>扣2分</li>
+          <li><span class="criteria-item">AI抄袭嫌疑：</span>扣3分</li>
+          <li><span class="criteria-item">多命令不完整：</span>扣3分</li>
+          <li><span class="criteria-item">参数/路径错误：</span>扣2-3分</li>
+          <li><span class="criteria-item">大小写错误：</span>扣2-3分</li>
+        </ul>
+      </div>
     </el-card>
   </div>
 </template>
@@ -55,23 +67,19 @@ import { ref, computed } from 'vue'
 import { ElMessage, ElLoading } from 'element-plus'
 import Papa from 'papaparse'
 
-// 新增格式化函数
 const formatStudentId = (id) => {
   return String(id).replace(/[^\d]/g, '')
 }
 
-// 响应式数据
 const studentId = ref('')
 const tableData = ref([])
 const loading = ref(false)
 const result = ref(false)
 
-// 添加计算属性格式化显示学号
 const formattedStudentId = computed(() => {
   return studentId.value.replace(/[^\d]/g, '')
 })
 
-// 保持parseCSV函数不变
 const getCSVPath = () => {
   return import.meta.env.DEV
       ? '/scores.csv'
@@ -110,7 +118,6 @@ const parseCSV = async () => {
   }
 }
 
-// 修改处理函数
 const handleSearch = async () => {
   if (!studentId.value.trim()) {
     ElMessage.warning('请输入有效的学号')
@@ -158,9 +165,7 @@ const handleSearch = async () => {
   }
 }
 
-// 修改后的数值格式化方法
 const formatValue = (row, column, cellValue) => {
-  // 需要显示为整数的字段列表
   const integerFields = ['提交序号', '学号', 'QQ']
 
   if (integerFields.includes(row.category)) {
@@ -168,11 +173,9 @@ const formatValue = (row, column, cellValue) => {
     return isNaN(num) ? cellValue : num.toString()
   }
 
-  // 其他数值类型处理
   const numericValue = parseFloat(cellValue)
   if (isNaN(numericValue)) return cellValue
 
-  // 处理整数型分数
   return numericValue % 1 === 0
       ? numericValue.toFixed(0)
       : numericValue.toFixed(2)
@@ -180,7 +183,6 @@ const formatValue = (row, column, cellValue) => {
 </script>
 
 <style scoped>
-/* 保持样式不变 */
 .container {
   max-width: 1200px;
   margin: 2rem auto;
@@ -229,6 +231,40 @@ const formatValue = (row, column, cellValue) => {
 
 .data-table {
   margin-top: 15px;
+}
+
+.scoring-criteria {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #ebeef5;
+}
+
+.scoring-criteria h4 {
+  color: #606266;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+.scoring-criteria ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.scoring-criteria li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #909399;
+  display: flex;
+  align-items: baseline;
+}
+
+.criteria-item {
+  color: #303133;
+  min-width: 120px;
+  font-weight: 500;
 }
 
 :deep(.el-table th) {
