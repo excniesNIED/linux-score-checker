@@ -57,6 +57,8 @@
           <li><span class="criteria-item">参数/路径错误：</span>扣2-3分</li>
           <li><span class="criteria-item">大小写错误：</span>扣2-3分</li>
           <li><span class="criteria-item">无法实现预期功能：</span>不得分</li>
+          <li><span class="criteria-item">Markdown排版：</span>加10分</li>
+          <li><span class="criteria-item">搭建博客：</span>加10分</li>
         </ul>
       </div>
     </el-card>
