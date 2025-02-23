@@ -56,6 +56,7 @@
           <li><span class="criteria-item">多命令不完整：</span>扣3分</li>
           <li><span class="criteria-item">参数/路径错误：</span>扣2-3分</li>
           <li><span class="criteria-item">大小写错误：</span>扣2-3分</li>
+          <li><span class="criteria-item">无法实现预期功能：</span>不得分</li>
         </ul>
       </div>
     </el-card>
