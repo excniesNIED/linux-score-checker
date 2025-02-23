@@ -1,7 +1,7 @@
 <template>
   <!-- 保持模板部分不变 -->
   <div class="container">
-    <h1 class="title">Linux课程作业查询系统</h1>
+    <h1 class="title">Linux课程作业成绩查询系统</h1>
     <div class="search-box">
       <el-input
           v-model="studentId"
